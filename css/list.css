@@ -1,0 +1,53 @@
+.aui-card-list {
+    margin-bottom: 0.1rem;
+}
+
+.text-light {
+    color: #999 !important;
+}
+
+.aui-radio {
+    width: 1rem;
+    height: 1rem;
+}
+
+.aui-list-item-label-icon {
+    float: left;
+    line-height: 1.5rem !important;
+}
+
+.aui-list {
+    border-top: 0 none;
+}
+
+.aui-card-list-user-name {
+    line-height: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.aui-card-list-user-avatar {
+    width: 0.9rem;
+}
+
+.aui-tab {
+    background: #d8efff;
+    padding: 0.5rem;
+}
+
+.aui-tab-item {
+    height: 1.3rem;
+    line-height: 1.3rem;
+    color: #027ad3;
+    font-weight: 700;
+    margin: 0 0.2rem;
+    border-radius: 4px;
+}
+
+.aui-tab-item.aui-active {
+    background: #027ad3;
+    color: #fff;
+}
+
+.aui-label-warning {
+    margin: 0 0 0.1rem 0.4rem;
+}

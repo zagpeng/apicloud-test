@@ -1,0 +1,282 @@
+<!-- <!doctype html>
+<html>
+<script type="text/javascript">
+    apiready = function () {
+        api.openWin({
+            name: "index1",
+            url: 'index1.html'
+        });
+    }
+</script> -->
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+    <style>
+        header{ background-color: #fff; }
+        /*
+        header::after{content: ''; position: absolute;left: 0;background: #c6d1d5;right:0; height: 3px; top: 2.25rem;}
+        */
+        #footer{
+            background: -webkit-linear-gradient(#0187e0, #0063a6);
+            background: -o-linear-gradient(#0187e0, #0063a6);
+            background: linear-gradient(#0187e0, #0063a6);
+        }
+        #footer ul li{ font-size: 16px;border-right: 1px solid #fff;color: #a7ddff; padding-top: 34px; padding-bottom: 8px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #footer ul li.active{ color: #fff; }
+        #footer ul li:nth-child(1){ background-image: url(./image/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/bottombtn0402.png); }
+		 #footer ul li:last-child{border-right: 0 none;}
+     .pad1{padding-top:0.1rem}
+        .flex-con{
+          overflow: auto
+        }
+      body{background-image: url(./image/bg.jpg);background-size:cover;}
+      .aui-card-list{background:transparent; height:8%; margin-bottom: 0rem;}
+      .aui-list{background:transparent;
+    border-top:0 none;}
+    .aui-list .aui-list-item{border-bottom:0 none;margin-bottom: 10px;background: rgba(255,255,255,0.3);border-radius: 3px;}
+    .aui-list .aui-list-item:after{background-color: transparent}
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #d2cece; opacity:1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #d2cece;opacity:1;
+    }
+
+    input:-ms-input-placeholder{
+        color: #d2cece;opacity:1;
+    }
+
+    input::-webkit-input-placeholder{
+        color: #d2cece;opacity:1;
+    }
+    /*.aui-border-t { border-top: 0 none; }
+    			.auigreen{color:#b9de13}
+    			.aui-list-item-text{color: #acacac !important;}
+    			#item-container li{border-bottom:0 none;    padding: 2px 20px;}
+    			.datach{background: #dff2ff;padding: 5px 50px !important;color:#369de4}
+    			.aui-list .aui-list-item-media{ padding: 0.1rem 0.4rem 0;width: 3.8rem;}
+    			.aui-media-list .aui-list-item-inner{padding-top: 0.2rem;padding-bottom: 0.2rem;}
+           .aui-content-padded{    top: 30%;}*/
+    </style>
+</head>
+<body>
+    <div class="aui-card-list">
+      <br><br>
+      <div class="aui-card-list-content" align="center">
+          <!--<img src="./image/logo.png" style="width:26%"/>-->
+      </div>
+      <div class="aui-card-list-footer">
+      </div>
+    </div>
+    <section class="aui-content-padded"  >
+    <img src="./image/tb.png" style="width:100%;"/>
+    <ul class="aui-list aui-form-list">
+      <li class="aui-list-item">
+          <div class="aui-list-item-inner">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-mobile"></i>
+              </div>
+              <div class="aui-list-item-input">
+                  <input type="text" value="" id="userAccount" placeholder="用户名">
+              </div>
+          </div>
+      </li>
+      <li class="aui-list-item">
+          <div class="aui-list-item-inner">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-lock"></i>
+              </div>
+              <div class="aui-list-item-input">
+                  <input type="password" value="" id="passwd" placeholder="密码">
+              </div>
+          </div>
+      </li>
+      <div class="aui-progress aui-progress" style="display:none;" id="xzjd">
+          <div id="jdt" class="aui-progress-bar" style="width: 0%;"></div>
+      </div>
+    </ul>
+    <div class="aui-btn aui-btn-block aui-btn-info aui-btn-sm" onclick="forLogin()">登录</div>
+  </section>
+
+</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/common.js"></script>
+<script type="text/javascript" src="script/aui-dialog.js"></script>
+<script type="text/javascript">
+    var t1='', type, time=10*1000;
+    apiready = function () {
+
+        // api.addEventListener({
+        //     name:'offline'
+        // }, function(ret, err){
+        //     alert('断网了');
+        // });
+
+        // checkVersion('1');
+        var backSecond = 0;
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+            var curSecond = new Date().getSeconds();
+            if (Math.abs(curSecond - backSecond) > 2) {
+                backSecond = curSecond;
+                api.toast({
+                    msg: '连续按两次关闭系统',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+            } else {
+              api.toLauncher();
+              // api.closeWidget({
+              //   id: api.appId, //这里改成自己的应用ID
+              //   retData: {name:'closeWidget'},
+              //   silent:true
+              //   });
+            }
+        });
+
+        api.addEventListener({
+            name:'viewappear'
+        }, function(ret, err){
+            if (t1 != undefined && t1 != '') {
+                $api.val($api.byId('userAccount'),'');
+                $api.val($api.byId('passwd'),'');
+                clearInterval(t1);
+            }
+        });
+    }
+    function getMsg() {
+        if (getUserInfoByKey("userAccount") == "")
+            return;
+
+        var url = host+"/GetNewMessage/"+getUserInfoByKey("userAccount");
+        // alert("url="+url);
+        api.ajax({
+            url: url,  //例如：这是我的地址
+            method: 'get',
+            dataType: 'text'
+        }, function(ret, err) {
+          // alert(ret);
+            if (ret == "" || !ret.startWith("\"{") || !ret.endWith("}\""))
+                return;
+            ret = dealStr(ret);
+            var data = $api.strToJson(ret);
+            if (data.errorCode == '0') {
+                if (data.singleInfo != '') {
+                    var ids = $api.getStorage('msgid');
+// alert(ids+'--'+data.singleInfo)
+                    if (ids != undefined && ids != '') {
+                        var elem = data.singleInfo.split(",");
+                        for (var i = 0; i < elem.length; i ++) {
+                          // alert(elem.length+"--"+elem[i])
+                            if (ids.indexOf(elem[i]) < 0) {
+                                sendMsg();
+                                $api.setStorage('msgid', data.singleInfo);
+                                break;
+                            }
+                        }
+                    } else {
+                        sendMsg();
+                        $api.setStorage('msgid', data.singleInfo);
+                    }
+                }
+            }
+        });
+    }
+
+    function forLogin() {
+      // sendMsg();return;
+        var url = host+"/Login";
+        var userAccount = $api.val($api.byId('userAccount'));
+        var passwd = $api.val($api.byId('passwd'));
+
+        if ($api.trim(userAccount) == '') {
+            openDialog('请输入用户名!');
+            // $api.toast('提示', '请输入用户名!', 1000);
+            return;
+        }
+
+        if ($api.trim(passwd) == '') {
+            openDialog('请输入密码!');
+            // $api.toast('提示', '请输入密码!', 1000);
+            return;
+        }
+        openDealWin('html/main', {});
+
+//         url += "/" + userAccount + "/" + passwd;
+//
+//         api.showProgress();//显示加载进度框
+//         api.ajax({
+//             url: url,  //例如：这是我的地址
+//             method: 'get',
+//             dataType: 'text'
+//         }, function(ret, err) {
+//             api.hideProgress();//隐藏加载进度框
+// // alert(ret);
+//             if (ret == "" || ret == undefined) {
+//                 openDialog('登录失败!');
+//                 // $api.toast('提示', '登录失败!', 1000);
+//                 return;
+//             }
+//
+//             ret = dealStr(ret);
+//             var data = $api.strToJson(ret);
+//             if (data.errorCode == '0'){
+//                 // 存储用户登录信息
+//                 $api.setStorage('userInfo', ret);
+//                 //setAjPush(userAccount);
+//
+//                 if (data["singleInfo"] != undefined && data["singleInfo"] != '')
+//                     time = data["singleInfo"] * 1000;
+//
+//                 getMsg();
+//                 t1 = window.setInterval(getMsg, time);
+//                 openDealWin('html/main', {});
+//             } else {
+//                 openDialog(data.errorMsg);
+//                 // $api.toast(data.errorMsg, 2000);
+//             }
+//         });
+    }
+
+    // function setAjPush(userName) {
+    //     var ajpush = api.require('ajpush');
+    //     var param = {
+    //         alias : userName,
+    //         tags : [userName]
+    //     };
+    //     ajpush.bindAliasAndTags(param, function(ret) {
+    //         var statusCode = ret.statusCode;
+    //     });
+    //
+    //     ajpush.init(function(ret) {
+    //         if (ret && ret.status) {
+    //             //success
+    //             ajpush.setListener(function(ret) {
+    //                 var id = ret.id;
+    //                 var title = ret.title;
+    //                 var content = ret.content;
+    //                 var extra = ret.extra;
+    //                 alert("id=" + id + ",title=" + title + ",content=" + content + ",extra=" + extra);
+    //             });
+    //         }
+    //     });
+    // }
+
+</script>
